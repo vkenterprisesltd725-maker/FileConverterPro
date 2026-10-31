@@ -1,0 +1,6 @@
+# Core Image and PDF Processing
+Pillow>=10.0.0
+PyMuPDF>=1.24.0
+
+# Packaging (only needed for building standalone EXE)
+pyinstaller>=6.0.0

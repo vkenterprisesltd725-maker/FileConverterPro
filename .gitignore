@@ -1,0 +1,42 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# PyInstaller build artifacts
+build/
+*.manifest
+*.spec.bak
+
+# Note: The built standalone .exe can be published directly to GitHub Releases.
+# If you want to commit the exe to git repo, remove or comment out the line below:
+dist/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE / Editor configuration
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# Temporary / testing files
+*.tmp
+test_sample*
+test_simple*
+stdout.txt
+stderr.txt
