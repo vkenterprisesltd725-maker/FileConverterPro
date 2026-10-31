@@ -165,37 +165,7 @@ FileConverterPro/
 
 ---
 
-## 📤 How to Publish to GitHub
 
-To publish this project to your GitHub account:
-
-1. **Initialize Git & Commit:**
-   ```powershell
-   cd "c:\Users\vikas\POJECTS + LEARNING\giveaway\FileConverterPro"
-   git init
-   git add .
-   git commit -m "Initial commit: FileConverterPro v1.0.0"
-   ```
-
-2. **Create a new repository on GitHub:**
-   - Go to [github.com/new](https://github.com/new).
-   - Name it `FileConverterPro`.
-   - Leave "Initialize with README" **unchecked**.
-
-3. **Push to GitHub:**
-   ```powershell
-   git branch -M main
-   git remote add origin https://github.com/your-username/FileConverterPro.git
-   git push -u origin main
-   ```
-
-4. **Release Standalone EXE (Optional):**
-   - Go to your repository on GitHub → **Releases** → **Draft a new release**.
-   - Create a tag (e.g., `v1.0.0`).
-   - Drag and drop `dist/FileConverterPro.exe` into the release binaries box.
-   - Click **Publish release**.
-
----
 
 ## 📄 License
 
