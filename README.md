@@ -22,6 +22,7 @@
 ## 🌟 Highlights
 
 - 🔒 **100% Offline & Private:** Your documents and photos never leave your machine. No telemetry, no cloud APIs.
+- 🎨 **Minimal Red & White UI:** Clean Swiss minimalist aesthetic engineered with high-contrast surfaces, crisp typography, and vibrant red accents.
 - 📦 **Single Standalone EXE:** Portable executable bundled with all dependencies (~38.5 MB). No Python or installation required.
 - 🔄 **Bidirectional Conversions:** Convert PDF ↔ JPG ↔ PNG ↔ BMP ↔ TIFF ↔ WEBP ↔ GIF ↔ ICO in any direction.
 - 📐 **Smart Resizer:** 20+ presets (HD, 4K, Instagram, Passport, A4 print), custom dimensions, or percentage scaling.

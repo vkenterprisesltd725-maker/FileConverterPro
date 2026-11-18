@@ -102,21 +102,23 @@ PRESET_SIZES = {
     "Custom": "custom",
 }
 
-# Color palette — dark modern theme
+# Color palette — Minimal Red, White & Grey theme
 COLORS = {
-    "bg_dark": "#1a1a2e",
-    "bg_mid": "#16213e",
-    "bg_card": "#0f3460",
-    "accent": "#e94560",
-    "accent_hover": "#ff6b81",
-    "text_primary": "#ffffff",
-    "text_secondary": "#a0a0b0",
-    "success": "#2ecc71",
-    "warning": "#f39c12",
-    "error": "#e74c3c",
-    "border": "#2a2a4a",
-    "input_bg": "#1e1e3a",
-    "button_bg": "#e94560",
+    "bg_dark": "#f4f4f5",        # Clean minimal light grey window background (Zinc 100)
+    "bg_mid": "#ffffff",         # Pure crisp white for panels & containers
+    "bg_card": "#ffffff",        # Pure crisp white for cards & surface frames
+    "accent": "#dc2626",         # Bold minimal red (Crimson Red 600)
+    "accent_hover": "#b91c1c",   # Darker red for interactive hover states (Red 700)
+    "text_primary": "#09090b",   # Deep charcoal / near-black for high contrast (Zinc 950)
+    "text_secondary": "#71717a", # Minimal cool slate grey for metadata (Zinc 500)
+    "success": "#16a34a",        # Clean emerald green
+    "warning": "#ea580c",        # Warm amber
+    "error": "#dc2626",          # Vibrant red
+    "border": "#e4e4e7",         # Crisp subtle light grey border (Zinc 200)
+    "border_dark": "#d4d4d8",    # Defined grey border for inputs & buttons (Zinc 300)
+    "input_bg": "#ffffff",       # Pure white input background
+    "button_bg": "#dc2626",      # Vibrant red primary button
+    "trough": "#e4e4e7",         # Light grey track for progress bar
 }
 
 
@@ -369,7 +371,7 @@ class FileConverterApp:
         self.root.geometry(f"{w}x{h}+{x}+{y}")
 
     def _setup_styles(self):
-        """Configure ttk styles for the dark theme."""
+        """Configure ttk styles for the minimal red, white, grey theme."""
         self.style = ttk.Style()
         self.style.theme_use("clam")
 
@@ -378,19 +380,19 @@ class FileConverterApp:
                              foreground=COLORS["text_primary"],
                              fieldbackground=COLORS["input_bg"],
                              bordercolor=COLORS["border"],
-                             troughcolor=COLORS["bg_mid"])
+                             troughcolor=COLORS["trough"])
 
         # Notebook (tabs)
         self.style.configure("TNotebook", background=COLORS["bg_dark"],
                              borderwidth=0)
         self.style.configure("TNotebook.Tab",
-                             background=COLORS["bg_mid"],
+                             background=COLORS["bg_dark"],
                              foreground=COLORS["text_secondary"],
                              padding=[20, 10],
                              font=("Segoe UI", 11, "bold"))
         self.style.map("TNotebook.Tab",
                        background=[("selected", COLORS["accent"])],
-                       foreground=[("selected", COLORS["text_primary"])])
+                       foreground=[("selected", "#ffffff")])
 
         # Frames
         self.style.configure("Card.TFrame", background=COLORS["bg_card"],
@@ -416,28 +418,31 @@ class FileConverterApp:
                              font=("Segoe UI", 12, "bold"))
         self.style.configure("Status.TLabel",
                              background=COLORS["bg_dark"],
-                             foreground=COLORS["success"],
-                             font=("Segoe UI", 10))
+                             foreground=COLORS["text_secondary"],
+                             font=("Segoe UI", 10, "bold"))
 
         # Buttons
         self.style.configure("Accent.TButton",
                              background=COLORS["accent"],
-                             foreground=COLORS["text_primary"],
+                             foreground="#ffffff",
                              font=("Segoe UI", 11, "bold"),
                              padding=[20, 10],
                              borderwidth=0)
         self.style.map("Accent.TButton",
                        background=[("active", COLORS["accent_hover"]),
-                                   ("pressed", COLORS["accent"])])
+                                   ("pressed", COLORS["accent"])],
+                       foreground=[("active", "#ffffff"),
+                                   ("pressed", "#ffffff")])
 
         self.style.configure("Secondary.TButton",
                              background=COLORS["bg_card"],
                              foreground=COLORS["text_primary"],
-                             font=("Segoe UI", 10),
+                             font=("Segoe UI", 10, "bold"),
                              padding=[15, 8],
-                             borderwidth=0)
+                             borderwidth=1,
+                             bordercolor=COLORS["border_dark"])
         self.style.map("Secondary.TButton",
-                       background=[("active", COLORS["border"])])
+                       background=[("active", COLORS["bg_dark"])])
 
         # Combobox
         self.style.configure("TCombobox",
@@ -449,7 +454,7 @@ class FileConverterApp:
 
         # Progress bar
         self.style.configure("Accent.Horizontal.TProgressbar",
-                             troughcolor=COLORS["bg_mid"],
+                             troughcolor=COLORS["trough"],
                              background=COLORS["accent"],
                              borderwidth=0,
                              thickness=8)
@@ -494,7 +499,7 @@ class FileConverterApp:
 
         ttk.Label(title_frame, text="⚡ FileConverterPro",
                   style="Title.TLabel").pack(side=tk.LEFT)
-        ttk.Label(title_frame, text=f"v{APP_VERSION}  •  Offline Universal Converter",
+        ttk.Label(title_frame, text=f"v{APP_VERSION}  •  Offline Universal Converter & Resizer",
                   style="Subtitle.TLabel").pack(side=tk.LEFT, padx=(15, 0), pady=(8, 0))
 
         # Windows Explorer Context Menu button
@@ -512,6 +517,19 @@ class FileConverterApp:
         self._build_resize_tab()
         self._build_pdf_tools_tab()
         self._build_batch_tab()
+
+        # Status bar
+        status_frame = ttk.Frame(self.root, style="Dark.TFrame")
+        status_frame.pack(fill=tk.X, padx=20, pady=(0, 10))
+
+        self.status_var = tk.StringVar(value="Ready — Select files to get started")
+        self.status_label = ttk.Label(status_frame, textvariable=self.status_var,
+                                      style="Status.TLabel")
+        self.status_label.pack(side=tk.LEFT)
+
+        self.progress = ttk.Progressbar(status_frame, length=250, mode="determinate",
+                                        style="Accent.Horizontal.TProgressbar")
+        self.progress.pack(side=tk.RIGHT)
 
     def _update_menu_btn_text(self):
         if is_context_menu_registered():
@@ -533,19 +551,6 @@ class FileConverterApp:
             else:
                 messagebox.showerror("Error", f"Failed to add context menu: {msg}")
         self._update_menu_btn_text()
-
-        # Status bar
-        status_frame = ttk.Frame(self.root, style="Dark.TFrame")
-        status_frame.pack(fill=tk.X, padx=20, pady=(0, 10))
-
-        self.status_var = tk.StringVar(value="Ready — Select files to get started")
-        self.status_label = ttk.Label(status_frame, textvariable=self.status_var,
-                                      style="Status.TLabel")
-        self.status_label.pack(side=tk.LEFT)
-
-        self.progress = ttk.Progressbar(status_frame, length=250, mode="determinate",
-                                        style="Accent.Horizontal.TProgressbar")
-        self.progress.pack(side=tk.RIGHT)
 
     # ──────── Tab 1: Format Converter ────────
 
