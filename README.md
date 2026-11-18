@@ -13,6 +13,10 @@
   <img src="https://img.shields.io/badge/Network-100%25%20Offline-blueviolet" alt="Offline" />
 </p>
 
+<p align="center">
+  <img src="docs/screenshots/hero_showcase.png" alt="FileConverterPro Showcase" width="100%" />
+</p>
+
 ---
 
 ## 🌟 Highlights
@@ -27,6 +31,26 @@
   - **Right-Click Context Menu:** Convert directly from Windows Explorer.
   - **Drag & Drop:** Drop files onto the application to process them immediately.
   - **Headless CLI:** Scriptable from PowerShell, CMD, or third-party Windows software.
+
+---
+
+## 📸 Real Application Screenshots
+
+<div align="center">
+
+| 🔄 Universal Format Converter | 📐 20+ Social & Print Resizer Presets |
+|:---:|:---:|
+| <img src="docs/screenshots/convert_tab.png" width="480" /> | <img src="docs/screenshots/resize_tab.png" width="480" /> |
+
+| 📄 PDF Merge, Compress & Extract | 🪟 Windows Explorer Right-Click Integration |
+|:---:|:---:|
+| <img src="docs/screenshots/pdf_tools_tab.png" width="480" /> | <img src="docs/screenshots/context_menu.png" width="480" /> |
+
+| ⚡ High-Throughput Batch Folder Convert |
+|:---:|
+| <img src="docs/screenshots/batch_tab.png" width="600" /> |
+
+</div>
 
 ---
 
